@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 0px;
+            color: #333;
+        }
+
+        #subject {
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="subject">Loading...</div>
+
+    <script>
+        // Schedule data directly in the HTML file
+        const schedule = [
+            // Format: ["Day", "Start-End", "Subject"]
+            ["Monday", "08:00-08:15", "Homeroom"],
+    ["Monday", "08:15-09:05", "Chinese"],
+    ["Monday", "09:05-10:45", "Chemistry"],
+    ["Monday", "10:45-11:00", "Break"],
+    ["Monday", "11:00-11:50", "Social"],
+    ["Monday", "11:50-12:40", "Physics"],
+    ["Monday", "12:40-13:30", "Lunch"],
+    ["Monday", "13:30-14:20", "Dance"],
+    ["Monday", "14:20-15:10", "Science"],
+    ["Monday", "15:10-16:00", "Eng-Maths"],
+
+    ["Tuesday", "08:00-08:15", "Homeroom"],
+    ["Tuesday", "08:15-09:05", "Maths"],
+    ["Tuesday", "09:05-09:55", "History"],
+    ["Tuesday", "09:55-10:45", "Thai"],
+    ["Tuesday", "10:45-11:00", "Break"],
+    ["Tuesday", "11:00-12:40", "Saylee"],
+    ["Tuesday", "12:40-13:30", "Lunch"],
+    ["Tuesday", "13:30-14:20", "Physics"],
+    ["Tuesday", "14:20-15:10", "Biology"],
+    ["Tuesday", "15:10-16:00", "Eng-Writing"],
+
+    ["Wednesday", "08:00-08:15", "Homeroom"],
+    ["Wednesday", "08:15-09:05", "Chinese"],
+    ["Wednesday", "09:05-10:45", "Physics"],
+    ["Wednesday", "10:45-11:00", "Break"],
+    ["Wednesday", "11:00-11:50", "Chemistry"],
+    ["Wednesday", "11:50-12:40", "Maths"],
+    ["Wednesday", "12:40-13:30", "Lunch"],
+    ["Wednesday", "13:30-14:20", "Neaneaw"],
+    ["Wednesday", "14:20-15:10", "Hygene"],
+    ["Wednesday", "15:10-16:00", "English"],
+
+    ["Thursday", "08:00-08:15", "Homeroom"],
+    ["Thursday", "08:15-09:05", "Free"],
+    ["Thursday", "09:05-09:55", "Science"],
+    ["Thursday", "09:55-10:45", "Art"],
+    ["Thursday", "10:45-11:00", "Break"],
+    ["Thursday", "11:00-12:40", "Maths"],
+    ["Thursday", "12:40-13:30", "Lunch"],
+    ["Thursday", "13:30-14:20", "Thai"],
+    ["Thursday", "14:20-15:10", "Social"],
+    ["Thursday", "15:10-16:00", "IELTS"],
+
+    ["Friday", "08:00-08:15", "Homeroom"],
+    ["Friday", "08:15-09:05", "Eng-Maths"],
+    ["Friday", "09:05-10:45", "Biology"],
+    ["Friday", "10:45-11:00", "Break"],
+    ["Friday", "11:00-11:50", "English"],
+    ["Friday", "11:50-12:40", "Science"],
+    ["Friday", "12:40-13:30", "Lunch"],
+    ["Friday", "13:30-14:20", "Eng-Present"],
+    ["Friday", "14:20-15:10", "Club"],
+    ["Friday", "15:10-16:00", "HOME"],
+        ];
+
+        function getCurrentSubject() {
+            const now = new Date();
+            const currentDay = now.toLocaleString('en-US', { weekday: 'long' });
+            const currentTime = now.getHours() + ":" + now.getMinutes().toString().padStart(2, '0');
+
+            let currentSubject = "No Class";
+
+            for (let entry of schedule) {
+                const [day, timeRange, subject] = entry;
+                if (day !== currentDay) continue;
+
+                const [startTime, endTime] = timeRange.split('-');
+                if (currentTime >= startTime && currentTime <= endTime) {
+                    currentSubject = subject;
+                    break;
+                }
+            }
+
+            document.getElementById('subject').innerText = currentSubject;
+        }
+
+        // Call function to display current subject
+        getCurrentSubject();
+
+        // Optionally, update the subject every minute to keep it accurate
+        setInterval(getCurrentSubject, 60000); // 60000 ms = 1 minute
+    </script>
+</body>
+</html>
