@@ -1,5 +1,3 @@
-Sunday,08:00-21:15,TEsstINGN
-
 Monday,08:00-08:15,Homeroom
 Monday,08:15-09:05,Chinese
 Monday,09:05-10:45,Chemistry
